@@ -1,0 +1,12 @@
+// 引用 Express 與 Express 路由器
+const  { Router }  = require('express')
+
+// 建立路由
+const router = Router()
+
+// API-v1
+const v1 = require('./v1')
+router.use('/v1', v1)
+
+// 匯出 router
+module.exports = router

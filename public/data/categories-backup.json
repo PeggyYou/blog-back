@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "category":"無分類"
+    },
+    {
+        "id": 2,
+        "category":"理財"
+    },
+    {
+        "id": 3,
+        "category":"家庭"
+    },
+    {
+        "id": 4,
+        "category":"職涯"
+    },
+    {
+        "id": 5,
+        "category":"健康"
+    }
+]

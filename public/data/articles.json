@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "author": "Henry",
+        "title": "Article1",
+        "category":"3",
+        "content": "This is content long time ago",
+        "createAt": 1705819929,
+        "updateAt": 1705819929
+    },
+    {
+        "id": 2,
+        "author": "Alex",
+        "title": "Article2",
+        "category":"5",
+        "content": "This is content a few years ago",
+        "createAt": 1705820000,
+        "updateAt": 1705820000
+    },
+    {
+        "id": 3,
+        "author": "Louis",
+        "title": "Article3",
+        "category":"4",
+        "content": "This is content recently",
+        "createAt": 1705830000,
+        "updateAt": 1705830000
+    },
+    {
+        "id": 4,
+        "author": "Ruey",
+        "title": "Article4",
+        "category":"2",
+        "content": "This is content yesterday",
+        "createAt": 1705840000,
+        "updateAt": 1705840000
+    },
+    {
+        "id": 5,
+        "author": "Peggy",
+        "title": "Article5",
+        "category":"3",
+        "content": "This is content today",
+        "createAt": 1705850000,
+        "updateAt": 1705850000
+    }
+]

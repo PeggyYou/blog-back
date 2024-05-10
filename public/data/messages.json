@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "articleId":2,
+        "content":"This is message1.",
+        "createAt":1705819929
+    },
+    {
+        "id": 2,
+        "articleId":3,
+        "content":"This is message2.",
+        "createAt":1705820000
+    },
+    {
+        "id": 3,
+        "articleId":2,
+        "content":"This is message3.",
+        "createAt":1705830000
+    },
+    {
+        "id": 4,
+        "articleId":4,
+        "content":"This is message4.",
+        "createAt":1705840000
+    },
+    {
+        "id": 5,
+        "content":"This is message5.",
+        "articleId":1,
+        "createAt":1705850000
+    }
+]
