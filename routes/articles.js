@@ -76,8 +76,12 @@ router.get('/category', (req, res) => {
 router.get('/:id/comments', (req, res) => {
   const articleId = req.params.id
   console.log(`req.params.id:${articleId}`)
+  const offset = req.query.offset
+  console.log(`req.query.offset:${offset}`)
+  const size = req.query.size
+  console.log(`req.query.size:${size}`)
   commentService
-    .getList(articleId)
+    .getList({ offset, size, articleId })
     .then((result) => {
       res.json(result)
     })

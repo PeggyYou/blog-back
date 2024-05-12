@@ -12,7 +12,7 @@ class CommentService {
     this.comment = []
   }
 
-  getList(articleId) {
+  getList({offset,size,articleId}) {
     return new Promise(async (resolve, reject) => {
       try {
         // 確認 id 屬有效值
@@ -30,6 +30,8 @@ class CommentService {
 
         // 取得留言列表
         let comments = commentModel.getList(articleId)
+        let length = comments.length
+        console.log(`length of comments:${length}`)
 
         // 帶入用戶資料
         comments.forEach((comment) => {
@@ -39,6 +41,36 @@ class CommentService {
           console.log(`comment forEach:${JSON.stringify(comment)}`)
         })
         console.log(`comments:${JSON.stringify(comments)}`)
+
+        // 依 offset 及 size 回傳留言篇數
+        // 若無設定，預設 offset = 0； size = 3
+        if (typeof offset === 'undefined') {
+          offset = '0'
+        }
+        if (typeof size === 'undefined') {
+          size = '1'
+        }
+        // 型態處理
+        offset = Number(offset.trim())
+        size = Number(size.trim())
+        // 當請求篇數大於留言列表總數，依留言列表總數為主
+        if (size > length) {
+          size = length
+        }
+        console.log(`offset:${offset}`)
+        console.log(`size:${size}`)
+        comments = comments.slice(offset, offset + size)
+
+        console.log(`comments sliced:${JSON.stringify(comments)}`)
+
+        comments = {
+          total: length,
+          offset,
+          size,
+          main: comments
+        }
+
+        console.log(`comments post:${JSON.stringify(comments)}`)
 
         return resolve(comments)
       } catch (error) {
