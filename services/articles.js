@@ -16,48 +16,27 @@ class ArticleService {
   getList(keyword) {
     // 取得文章列表
     let articles = articleModel.getList()
-    console.log(`articles from deepCopy:${JSON.stringify(articles)}`)
+    // 取得文章分類
     let articles_categories = articlesCategoryModel.getList()
-    console.log(
-      `articles_categories from deepCopy:${JSON.stringify(articles_categories)}`
-    )
 
     // 帶入文章分類
     articles.forEach((article) => {
       let category = []
-      console.log(
-        `article.id:${article.id}，article:${JSON.stringify(article)}`
-      )
-      // 文章及分類對照表
+      // 依文章 id 篩選文章分類
       articles_categories.forEach((list) => {
-        console.log(`list:${JSON.stringify(list)}`)
         if (list.article_id === article.id) {
           category.push(categoryModel.get(list.category_id).data)
-          console.log(
-            `category after pushed:${JSON.stringify(JSON.stringify(category))}`
-          )
         }
       })
       article.categories = category
-      console.log(`category in article:${JSON.stringify(article.category)}`)
-
-      console.log(`article pushed:${JSON.stringify(article)}`)
     })
 
     // 帶入用戶
     articles.forEach((article) => {
       let user = []
-      console.log(`article.user:${JSON.stringify(article.user)}`)
-      console.log(
-        `userModel.get(article.user):${JSON.stringify(
-          userModel.get(article.user)
-        )}`
-      )
       user.push(userModel.get(article.user).data)
       article.user = user
-      console.log(`article.user:${JSON.stringify(article.user)}`)
     })
-    console.log(`articles with user:${JSON.stringify(articles)}`)
 
     // 文章列表比對 keyword
     if (typeof keyword !== 'undefined') {
@@ -65,10 +44,25 @@ class ArticleService {
       let keyword_ = keyword.trim().toLowerCase()
       console.log(`keyword_:${keyword_}`)
       articles = articles.filter(function (item, index, array) {
+        // keyword 比對文章列表
+        let hasCategory
+        console.log(`item.categories:${JSON.stringify(item.categories)}`)
+        item.categories.some((category) => {
+          console.log(`category:${JSON.stringify(category)}`)
+          console.log(`category.category:${category.category}`)
+          if (category.category.toLowerCase().includes(keyword_)) {
+            hasCategory = true
+            console.log(`hasCategory in if:${hasCategory}`)
+            return hasCategory
+          }
+        })
+        console.log(`hasCategory out of loop:${hasCategory}`)
+        console.log(`hasCategory out of loop typeof :${typeof hasCategory}`)
         return (
-          item.author.toLowerCase().toLowerCase().includes(keyword_) ||
+          item.user[0].username.toLowerCase().includes(keyword_) ||
           item.title.toLowerCase().includes(keyword_) ||
-          item.content.toLowerCase().includes(keyword_)
+          item.content.toLowerCase().includes(keyword_) ||
+          hasCategory
         )
       })
     }
