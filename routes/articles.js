@@ -15,8 +15,12 @@ const router = Router()
 // GET /articles (取得文章列表及搜尋關鍵字)
 router.get('/', (req, res) => {
   const keyword = req.query.keyword
-  console.log(`req.params.keyword:${keyword}`)
-  res.json(articleService.getList(keyword))
+  console.log(`req.query.keyword:${keyword}`)
+  const offset = req.query.offset
+  console.log(`req.query.offset:${offset}`)
+  const size = req.query.size
+  console.log(`req.query.size:${size}`)
+  res.json(articleService.getList({offset,size,keyword}))
 })
 
 // POST /articles (新增單篇文章)
