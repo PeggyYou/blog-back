@@ -1,47 +1,47 @@
 [
     {
         "id": 1,
-        "author": "Henry",
-        "title": "Article1",
-        "category":"3",
+        "title": "Money management",
+        "picture":"https://images.pexels.com/photos/210574/pexels-photo-210574.jpeg",
         "content": "This is content long time ago",
         "createAt": 1705819929,
-        "updateAt": 1705819929
+        "updateAt": 1705819929,
+        "user": "Henry"
     },
     {
         "id": 2,
-        "author": "Alex",
-        "title": "Article2",
-        "category":"5",
+        "title": "Healthy diet",
+        "picture":"https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg",
         "content": "This is content a few years ago",
         "createAt": 1705820000,
-        "updateAt": 1705820000
+        "updateAt": 1705820000,
+        "user": "Alex"
     },
     {
         "id": 3,
-        "author": "Louis",
-        "title": "Article3",
-        "category":"4",
+        "title": "Get a job",
+        "picture":"https://images.pexels.com/photos/3760072/pexels-photo-3760072.jpeg",
         "content": "This is content recently",
         "createAt": 1705830000,
-        "updateAt": 1705830000
+        "updateAt": 1705830000,
+        "user": "Louis"
     },
     {
         "id": 4,
-        "author": "Ruey",
-        "title": "Article4",
-        "category":"2",
+        "title": "Families and Family Life",
+        "picture":"https://images.pexels.com/photos/1683975/pexels-photo-1683975.jpeg",
         "content": "This is content yesterday",
         "createAt": 1705840000,
-        "updateAt": 1705840000
+        "updateAt": 1705840000,
+        "user": "Ruey"
     },
     {
         "id": 5,
-        "author": "Peggy",
-        "title": "Article5",
-        "category":"3",
+        "title": "The Power of Collaboration",
+        "picture":"https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
         "content": "This is content today",
         "createAt": 1705850000,
-        "updateAt": 1705850000
+        "updateAt": 1705850000,
+        "user": "Peggy"
     }
 ]

@@ -1,9 +1,9 @@
-const { articleModel, categoryModel, messageModel } = require('../models')
+const { articleModel, categoryModel, commentModel } = require('../models')
 const { ReturnCode, ErrorCode } = require('../utils/codes')
 
-class MessageService {
+class CommentService {
   constructor() {
-    this.message = []
+    this.comment = []
   }
 
   getList(articleId) {
@@ -22,9 +22,9 @@ class MessageService {
         await articleModel.get(articleId)
 
         // 取得留言列表
-        let messages = messageModel.getList(articleId)
+        let comments = commentModel.getList(articleId)
 
-        return resolve(messages)
+        return resolve(comments)
       } catch (error) {
         console.log(`取得文章留言錯誤：${JSON.stringify(error)}`)
         if (error.index === -1) {
@@ -34,7 +34,7 @@ class MessageService {
             msg: `沒有 id 為 ${articleId} 的文章`
           })
         } else {
-          // TODO: 如果 messageModel.getList(articleId) 發生錯誤，如何辨識並回傳?
+          // TODO: 如果 commentModel.getList(articleId) 發生錯誤，如何辨識並回傳?
           reject({
             code: ErrorCode.ReadError,
             msg: `讀取數據時發生錯誤`
@@ -44,7 +44,7 @@ class MessageService {
     })
   }
 
-  add({ articleId, message }) {
+  add({ articleId, comment }) {
     return new Promise(async (resolve, reject) => {
       try {
         // 確認 id 屬有效值
@@ -61,9 +61,9 @@ class MessageService {
         await articleModel.get(articleId)
 
         // 新增留言
-        let newMessage = await messageModel.add({ articleId, message })
+        let newComment = await commentModel.add({ articleId, comment })
 
-        resolve(newMessage)
+        resolve(newComment)
       } catch (error) {
         console.log(`無法新增留言, 錯誤訊息:${JSON.stringify(error)}`)
         if (error.index === -1) {
@@ -83,5 +83,5 @@ class MessageService {
   }
 }
 
-const messageService = new MessageService()
-module.exports = messageService
+const commentService = new CommentService()
+module.exports = commentService

@@ -1,4 +1,9 @@
-const { articleModel, categoryModel } = require('../models')
+const {
+  articleModel,
+  categoryModel,
+  articlesCategoryModel,
+  messageModel
+} = require('../models')
 const { ReturnCode, ErrorCode } = require('../utils/codes')
 
 class ArticleService {
@@ -10,16 +15,37 @@ class ArticleService {
   getList(keyword) {
     // 取得文章列表
     let articles = articleModel.getList()
-    console.log(`articles from deepCopy:${articles}`)
-    let length = articles.length
-    let categories = categoryModel.getList()
+    console.log(`articles from deepCopy:${JSON.stringify(articles)}`)
+    let articles_categories = articlesCategoryModel.getList()
+    console.log(
+      `articles_categories from deepCopy:${JSON.stringify(articles_categories)}`
+    )
 
     // 帶入文章分類
-    for (let i = 0; i < length; i++) {
-      let article = articles[i]
-      let category = categories[article.category - 1].category
+    articles.forEach((article) => {
+      let category = []
+      console.log(
+        `article.id:${article.id}，article:${JSON.stringify(article)}`
+      )
+      // 文章及分類對照表
+      articles_categories.forEach((list) => {
+        console.log(`list:${JSON.stringify(list)}`)
+        if (list.article_id === article.id) {
+          category.push(categoryModel.get(list.category_id).data)
+          console.log(`category after pushed:${JSON.stringify(JSON.stringify(category))}`)
+          // categoryModel.get(list.category_id).then((category_)=>{
+          //   console.log(`category_:${JSON.stringify(category_)}`)
+          //   category.push(category_)
+          //   console.log(`category after pushed:${JSON.stringify(category)}`)
+          // })
+          // catch...
+        }
+      })
       article.category = category
-    }
+      console.log(`category in article:${JSON.stringify(article.category)}`)
+
+      console.log(`article pushed:${JSON.stringify(article)}`)
+    })
 
     // 文章列表比對 keyword
     if (typeof keyword !== 'undefined') {

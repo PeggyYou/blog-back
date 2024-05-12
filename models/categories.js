@@ -35,6 +35,23 @@ class CategoryModel {
   getList() {
     return deepCopy(this.categories)
   }
+
+  // 依 id 取得文章分類
+  get(id) {
+    let ID = Number(id)
+    let categories = this.getList()
+    let length = categories.length
+
+    console.log(`get categories:${JSON.stringify(categories)}`)
+    for (let i = 0; i < length; i++) {
+      if (ID === categories[i].id) {
+        console.log(`返回單項文章分類:${JSON.stringify(categories[i])}`)
+        return { index: i, data: categories[i] }
+      }
+    }
+    console.log(`${ID} is null`)
+    return { index: -1, data: null }
+  }
 }
 
 // 建立實例

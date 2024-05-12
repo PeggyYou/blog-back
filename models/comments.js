@@ -1,19 +1,18 @@
 const { ReturnCode, ErrorCode } = require('../utils/codes')
 const { deepCopy } = require('../utils')
 const fs = require('fs')
-const FILE_PATH = './public/data/messages.json'
+const FILE_PATH = './public/data/comments.json'
 
-class MessageModel {
+class CommentModel {
   constructor() {
-    this.messages = []
-    this.maxID =[]
+    this.comments = []
+    this.maxID = []
     this.read()
       .then((data) => {
-        this.messages.push(...data)
+        this.comments.push(...data)
         this.maxID = this.maxId()
       })
       .catch()
-    
   }
 
   read() {
@@ -32,56 +31,56 @@ class MessageModel {
 
   getList(articleId) {
     // 取得留言列表 (深層複製保護原始資料)
-    let messages = deepCopy(this.messages)
+    let comments = deepCopy(this.comments)
 
     // 比對符合文章 id 的留言
-    let length = messages.length
-    let messageSelected = []
+    let length = comments.length
+    let commentSelected = []
     articleId = Number(articleId)
     for (let i = 0; i < length; i++) {
-      let message = messages[i]
-      if (articleId === message.articleId) {
-        messageSelected.push(message)
+      let comment = comments[i]
+      if (articleId === comment.articleId) {
+        commentSelected.push(comment)
       }
     }
 
     // 篩選後留言列表由最新排到最舊
-    messageSelected.sort((a, b) => b.createAt - a.createAt)
+    commentSelected.sort((a, b) => b.createAt - a.createAt)
 
-    return messageSelected
+    return commentSelected
   }
 
-  async add({ articleId, message }) {
+  async add({ articleId, comment }) {
     try {
       // 取得留言列表 (應使用深層複製保護原始資料，而非存入變數，以避免異動到原始資料)
-      let messages = deepCopy(this.messages)
+      let comments = deepCopy(this.comments)
 
       // 新增至留言列表
-      let newMessage = {
+      let newComment = {
         id: this.maxID + 1,
         articleId: Number(articleId),
-        content: message.content,
+        content: comment.content,
         createAt: this.getTimeStamp()
       }
-      messages.push(newMessage)
+      comments.push(newComment)
 
       // 寫入文章留言列表
-      const writeResult = await this.write(messages)
+      const writeResult = await this.write(comments)
 
-      return newMessage
+      return newComment
     } catch (error) {
       // TODO: try {
       //   throw new Error('Whoops!');
       // } catch (e) {
-      //   console.log(e.name + ': ' + e.message);
+      //   console.log(e.name + ': ' + e.comment);
       // }
 
       // 沒有儲存成功，將已經 PUSH 的值移除掉
-      let messages = messages.pop(newMessage)
-      console.log(`已經移除更新資料的messages:
-      ${messages}`)
+      let comments = comments.pop(newComment)
+      console.log(`已經移除更新資料的comments:
+      ${comments}`)
 
-      console.log(`寫入文章留言列表失敗 messageModel: ${error}`)
+      console.log(`寫入文章留言列表失敗 commentModel: ${error}`)
       // TODO: ErrorCode.WriteError 要放在哪顯示?
       return {
         code: ErrorCode.WriteError,
@@ -110,7 +109,6 @@ class MessageModel {
     })
   }
 
-
   // 生成時間戳(秒)
   getTimeStamp() {
     return Math.floor(new Date().getTime() / 1000)
@@ -119,16 +117,16 @@ class MessageModel {
   // 判斷留言列表 id 最大值 (置於 constructor 做取用)
   maxId() {
     let maxId = 0
-    let length = this.messages.length
+    let length = this.comments.length
     for (let i = 0; i < length; i++) {
-      let messageId = this.messages[i].id
-      if (messageId > maxId) {
-        maxId = messageId
+      let commentId = this.comments[i].id
+      if (commentId > maxId) {
+        maxId = commentId
       }
     }
     return maxId
   }
 }
 
-const messageModel = new MessageModel()
-module.exports = messageModel
+const commentModel = new CommentModel()
+module.exports = commentModel
