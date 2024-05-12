@@ -1,4 +1,10 @@
-const { articleModel, categoryModel, commentModel } = require('../models')
+const {
+  articleModel,
+  categoryModel,
+  articlesCategoryModel,
+  messageModel,
+  userModel
+} = require('../models')
 const { ReturnCode, ErrorCode } = require('../utils/codes')
 
 class CommentService {

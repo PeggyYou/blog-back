@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "avatar":"https://images.pexels.com/photos/859265/pexels-photo-859265.jpeg",
+        "username": "Henry",
+        "email": "henry@blog.com",
+        "password": "123"
+    },
+    {
+        "id": 2,
+        "avatar":"https://images.pexels.com/photos/819530/pexels-photo-819530.jpeg",
+        "username": "Alex",
+        "email": "alex@blog.com",
+        "password": "123"
+    },
+    {
+        "id": 3,
+        "avatar":"https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg",
+        "username": "Louis",
+        "email": "louis@blog.com",
+        "password": "123"
+    },
+    {
+        "id": 4,
+        "avatar":"https://images.pexels.com/photos/39866/entrepreneur-startup-start-up-man-39866.jpeg",
+        "username": "Ruey",
+        "email": "ruey@blog.com",
+        "password": "123"
+    },
+    {
+        "id": 5,
+        "avatar":"https://images.pexels.com/photos/445109/pexels-photo-445109.jpeg",
+        "username": "Peggy",
+        "email": "peggy@blog.com",
+        "password": "123"
+    }
+]

@@ -6,7 +6,7 @@
         "content": "This is content long time ago",
         "createAt": 1705819929,
         "updateAt": 1705819929,
-        "user": "Henry"
+        "user": 1
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "content": "This is content a few years ago",
         "createAt": 1705820000,
         "updateAt": 1705820000,
-        "user": "Alex"
+        "user": 2
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "content": "This is content recently",
         "createAt": 1705830000,
         "updateAt": 1705830000,
-        "user": "Louis"
+        "user": 3
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "content": "This is content yesterday",
         "createAt": 1705840000,
         "updateAt": 1705840000,
-        "user": "Ruey"
+        "user": 4
     },
     {
         "id": 5,
@@ -42,6 +42,6 @@
         "content": "This is content today",
         "createAt": 1705850000,
         "updateAt": 1705850000,
-        "user": "Peggy"
+        "user": 5
     }
 ]

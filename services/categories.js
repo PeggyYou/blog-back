@@ -1,4 +1,10 @@
-const { articleModel, categoryModel } = require('../models')
+const {
+  articleModel,
+  categoryModel,
+  articlesCategoryModel,
+  messageModel,
+  userModel
+} = require('../models')
 
 class CategoryService {
   // 取得文章分類

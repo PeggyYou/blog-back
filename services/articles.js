@@ -2,7 +2,8 @@ const {
   articleModel,
   categoryModel,
   articlesCategoryModel,
-  messageModel
+  messageModel,
+  userModel
 } = require('../models')
 const { ReturnCode, ErrorCode } = require('../utils/codes')
 
@@ -32,20 +33,31 @@ class ArticleService {
         console.log(`list:${JSON.stringify(list)}`)
         if (list.article_id === article.id) {
           category.push(categoryModel.get(list.category_id).data)
-          console.log(`category after pushed:${JSON.stringify(JSON.stringify(category))}`)
-          // categoryModel.get(list.category_id).then((category_)=>{
-          //   console.log(`category_:${JSON.stringify(category_)}`)
-          //   category.push(category_)
-          //   console.log(`category after pushed:${JSON.stringify(category)}`)
-          // })
-          // catch...
+          console.log(
+            `category after pushed:${JSON.stringify(JSON.stringify(category))}`
+          )
         }
       })
-      article.category = category
+      article.categories = category
       console.log(`category in article:${JSON.stringify(article.category)}`)
 
       console.log(`article pushed:${JSON.stringify(article)}`)
     })
+
+    // 帶入用戶
+    articles.forEach((article) => {
+      let user = []
+      console.log(`article.user:${JSON.stringify(article.user)}`)
+      console.log(
+        `userModel.get(article.user):${JSON.stringify(
+          userModel.get(article.user)
+        )}`
+      )
+      user.push(userModel.get(article.user).data)
+      article.user = user
+      console.log(`article.user:${JSON.stringify(article.user)}`)
+    })
+    console.log(`articles with user:${JSON.stringify(articles)}`)
 
     // 文章列表比對 keyword
     if (typeof keyword !== 'undefined') {
