@@ -7,7 +7,7 @@ const {
   categoryService,
   commentService
 } = require('../services')
-const { ReturnCode, ErrorCode } = require('../utils')
+const { ReturnCode, ErrorCode } = require('../utils/codes')
 
 // 建立路由
 const router = Router()

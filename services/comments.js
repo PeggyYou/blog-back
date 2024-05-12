@@ -2,7 +2,7 @@ const {
   articleModel,
   categoryModel,
   articlesCategoryModel,
-  messageModel,
+  commentModel,
   userModel
 } = require('../models')
 const { ReturnCode, ErrorCode } = require('../utils/codes')
@@ -26,9 +26,19 @@ class CommentService {
 
         //確認單篇文章是否存在
         await articleModel.get(articleId)
+        console.log('有 id 文章')
 
         // 取得留言列表
         let comments = commentModel.getList(articleId)
+
+        // 帶入用戶資料
+        comments.forEach((comment) => {
+          let user = []
+          user.push(userModel.get(comment.user).data)
+          comment.user = user
+          console.log(`comment forEach:${JSON.stringify(comment)}`)
+        })
+        console.log(`comments:${JSON.stringify(comments)}`)
 
         return resolve(comments)
       } catch (error) {

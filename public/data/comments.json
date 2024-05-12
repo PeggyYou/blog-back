@@ -2,31 +2,36 @@
     {
         "id": 1,
         "article_id":2,
-        "content":"This is message1.",
-        "createAt":1705819929
+        "comment":"This is message1.",
+        "createAt":1705819929,
+        "user": 1
     },
     {
         "id": 2,
         "article_id":3,
-        "content":"This is message2.",
-        "createAt":1705820000
+        "comment":"This is message2.",
+        "createAt":1705820000,
+        "user": 2
     },
     {
         "id": 3,
         "article_id":2,
-        "content":"This is message3.",
-        "createAt":1705830000
+        "comment":"This is message3.",
+        "createAt":1705830000,
+        "user": 3
     },
     {
         "id": 4,
         "article_id":4,
-        "content":"This is message4.",
-        "createAt":1705840000
+        "comment":"This is message4.",
+        "createAt":1705840000,
+        "user": 4
     },
     {
         "id": 5,
-        "content":"This is message5.",
+        "comment":"This is message5.",
         "article_id":1,
-        "createAt":1705850000
+        "createAt":1705850000,
+        "user": 5
     }
 ]

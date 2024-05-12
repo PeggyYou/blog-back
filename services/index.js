@@ -1,5 +1,5 @@
 const articleService = require('./articles')
 const categoryService = require('./categories')
-const messageService = require('./comments')
+const commentService = require('./comments')
 
-module.exports = { articleService, categoryService, messageService }
+module.exports = { articleService, categoryService, commentService }

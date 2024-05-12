@@ -39,7 +39,7 @@ class CommentModel {
     articleId = Number(articleId)
     for (let i = 0; i < length; i++) {
       let comment = comments[i]
-      if (articleId === comment.articleId) {
+      if (articleId === comment.article_id) {
         commentSelected.push(comment)
       }
     }
