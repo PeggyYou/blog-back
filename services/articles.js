@@ -13,14 +13,9 @@ class ArticleService {
   }
 
   // 取得文章列表
-  getList({ offset, size, keyword }) {
-    console.log(`offset:${offset}`)
-    console.log(`size:${size}`)
+  getList(keyword) {
     // 取得文章列表
     let articles = articleModel.getList()
-    let length = articles.length
-    console.log(`length at begin:${length}`)
-
     // 取得文章分類
     let articles_categories = articlesCategoryModel.getList()
 
@@ -51,12 +46,18 @@ class ArticleService {
       articles = articles.filter(function (item, index, array) {
         // keyword 比對文章列表
         let hasCategory
+        console.log(`item.categories:${JSON.stringify(item.categories)}`)
         item.categories.some((category) => {
+          console.log(`category:${JSON.stringify(category)}`)
+          console.log(`category.category:${category.category}`)
           if (category.category.toLowerCase().includes(keyword_)) {
             hasCategory = true
+            console.log(`hasCategory in if:${hasCategory}`)
             return hasCategory
           }
         })
+        console.log(`hasCategory out of loop:${hasCategory}`)
+        console.log(`hasCategory out of loop typeof :${typeof hasCategory}`)
         return (
           item.user[0].username.toLowerCase().includes(keyword_) ||
           item.title.toLowerCase().includes(keyword_) ||
@@ -66,36 +67,6 @@ class ArticleService {
       })
     }
     console.log(`articles:${JSON.stringify(articles)}`)
-    length = articles.length
-    console.log(`length after keyword:${length}`)
-
-    // 依 offset 及 size 回傳文章篇數
-    // 若無設定，預設 offset = 0； size = 3
-    if (typeof offset === 'undefined') {
-      offset = '0'
-    }
-    if (typeof size === 'undefined') {
-      size = '3'
-    }
-    // 型態處理
-    offset = Number(offset.trim())
-    size = Number(size.trim())
-    // 當請求篇數大於文章列表總數，依文章列表總數為主
-    if (size > length) {
-      size = length
-    }
-    articles = articles.slice(offset, offset + size)
-
-    console.log(`articles sliced:${JSON.stringify(articles)}`)
-
-    articles = {
-      total: length,
-      offset,
-      size,
-      main: articles
-    }
-
-    console.log(`articles combination:${JSON.stringify(articles)}`)
 
     return articles
   }
